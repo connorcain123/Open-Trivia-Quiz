@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Home</title>
+{% endblock %}
+
+{% block nav %}
+        <li class="nav-item active">
+          <a class="nav-link" href="/quiz/home/">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/quiz/highscores/">High Scores</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/quiz/create_get">Create Tournament</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/quiz/login/">Logout</a>
+        </li>
+{% endblock %}
+
+{% block jumbo %}
+    <h1 class="display-3">Welcome {{ username }}!</h1>
+    <hr>
+    <p class="lead">You can enter a tournament by clicking one of the cards below.
+         You can only enter a tournament once and if you do well your score will be posted to the <a class="nav-link in-text" href="/quiz/highscores/">high scores</a>.</p>
+{% endblock %}
+
+{% block body %}
+
+  <div class="row text-center">
+  {% for t in active %}
+    <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card">
+            <img class="card-img-top" src="/static/quiz/images/{{ t.category }}.jpg" alt="Category Image">
+            <div class="card-body">
+              <h4 class="card-title">{{ t.name }}</h4>
+              <ul class="card-list">
+                  <li>Start Date: {{ t.start_date }}</li>
+                  <li>End Date: {{ t.end_date }}</li>
+                  <li>Difficulty: {{ t.difficulty }}</li>
+              </ul>
+            </div>
+            <div class="card-footer">
+              <a href="/quiz/questions" class="btn btn-primary">Enter This Tournament!</a>
+            </div>
+          </div>
+        </div>
+  {% endfor %}
+  </div>
+
+{% endblock %}
+

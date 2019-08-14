@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Login</title>
+{% endblock %}
+
+{% block nav %}
+    <li class="nav-item active">
+      <a class="nav-link" href="/quiz/login/">Login
+        <span class="sr-only">(current)</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/quiz/signup/">Sign Up</a>
+    </li>
+{% endblock %}
+
+{% block jumbo %}
+    <h1 class="display-3">Welcome to Trivia Tournament!</h1>
+    <hr>
+    <p class="lead">Login in below to be able to enter triva tournaments and qualify for the high scores.
+        If you aren't already a user you can easily <a class="nav-link in-text" href="/quiz/signup">sign up</a> to begin entering tournaments.</p>
+{% endblock %}
+
+{% block body %}
+
+<div class="container body">
+    <div class="container create-form">
+
+        <form method="post" action="{% url 'quiz:home' %}">
+            {% csrf_token %}
+            <label>Username:</label>
+            <input type="text" name="username" class="form-control" placeholder="Username">
+            <label>Password:</label>
+            <input type="password" name="password" class="form-control" placeholder="Password">
+            <br>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
+

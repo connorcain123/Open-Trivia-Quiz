@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Tournament: {{ tournament_name }}</title>
+{% endblock %}
+
+{% block nav %}
+        <li class="nav-item">
+          <a class="nav-link" href="/quiz/home/">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/quiz/highscores/">High Scores</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/quiz/create/">Create Tournament</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/quiz/logout/">Logout</a>
+        </li>
+{% endblock %}
+
+{% block jumbo %}
+    <h1 class="display-3">{{ tournament_name }}</h1>
+    <hr>
+{% endblock %}
+
+{% block body %}
+
+<div class="container body">
+
+    <div class="message">
+    {% if messages %}
+        {% for message in messages %}
+            <h1 {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h1>
+        {% endfor %}
+    {% endif %}
+    </div>
+
+    <h1>Question: {{ question_number }}</h1>
+    <p>{{ question.question_text|safe }}</p>
+    <form method="post" action="{% url 'quiz:checkanswer' tournament_id=tournament_id %}">
+        {% csrf_token %}
+        {% for a in answers %}
+            <input type="radio" name="answers" value="{{ a.incorrect_answer }}" id="{{ a.incorrect_answer }}">
+            <label for="{{ a.incorrect_answer }}">{{ a.incorrect_answer|safe }}</label><br>
+        {% endfor %}
+        <br>
+        <button type="submit" class="btn btn-primary">Confirm</button>
+    </form>
+
+</div>
+
+{% endblock %}

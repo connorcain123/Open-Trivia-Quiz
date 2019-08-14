@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>High Scores</title>
+{% endblock %}
+
+{% block nav %}
+        <li class="nav-item">
+          <a class="nav-link" href="/quiz/home/">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/quiz/highscores/">High Scores</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/quiz/create/">Create Tournament</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/quiz/logout/">Logout</a>
+        </li>
+{% endblock %}
+
+{% block jumbo %}
+    <h1 class="display-3">High Scores!</h1>
+    <hr>
+    <p class="lead">Below is a table of all the high scores from all previous tournaments.</p>
+{% endblock %}
+
+{% block body %}
+
+<div class="container body">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Tournament name</th>
+          <th scope="col">Start Date</th>
+          <th scope="col">End Date</th>
+          <th scope="col">Category</th>
+          <th scope="col">Difficulty</th>
+          <th scope="col">Username</th>
+          <th scope="col">Score</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for h in highscores %}
+            {% for t in tournaments %}
+                {% if t.id == h.tournament_id %}
+                    <tr>
+                      <th scope="row">{{ t.name }}</th>
+                      <td>{{ t.start_date }}</td>
+                      <td>{{ t.end_date }}</td>
+                      <td>{{ t.category }}</td>
+                      <td>{{ t.difficulty}}</td>
+                      <td>{{ h.username }}</td>
+                      <td>{{ h.current_score }}/10</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+      {% endfor %}
+      </tbody>
+    </table>
+</div>
+
+{% endblock %}

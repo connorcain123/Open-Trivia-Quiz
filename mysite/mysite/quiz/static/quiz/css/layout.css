@@ -1,0 +1,30 @@
+div.container.create-form {
+    width: 400px;
+}
+div.main{
+    min-height: 798px;
+}
+body {
+  padding-top: 54px;
+  background: url("/static/quiz/images/Background.jpg") 50% 0 no-repeat fixed;
+}
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+  }
+}
+.card {
+  height: 100%;
+}
+.in-text{
+    display: inline;
+    padding: 0px;
+}
+div.container.body{
+    background-color: #e9ecef;
+    padding: 15px;
+}
+ul.card-list{
+    display: inline;
+    list-style-type: none;
+}

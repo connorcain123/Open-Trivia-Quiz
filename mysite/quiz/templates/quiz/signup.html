@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Sign Up</title>
+{% endblock %}
+
+{% block nav %}
+    <li class="nav-item">
+      <a class="nav-link" href="/quiz/login/">Login
+        <span class="sr-only">(current)</span>
+      </a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="/quiz/signup/">Sign Up</a>
+    </li>
+{% endblock %}
+
+{% block jumbo %}
+    <h1 class="display-3">Sign Up!</h1>
+    <hr>
+    <p class="lead">Use the form below to sign up to be able to compete in tournaments and be eligible for the high scores.</p>
+{% endblock %}
+
+{% block body %}
+
+<div class="container body">
+    <div class="container create-form">
+
+        <form method="post" action="{% url 'quiz:signup' %}">
+            {% csrf_token %}
+            <label>First Name:</label>
+            <input type="text" name="firstname" class="form-control" placeholder="First Name" required>
+            <label>Last Name:</label>
+            <input type="text" name="lastname" class="form-control" placeholder="First Name" required>
+            <label>Email:</label>
+            <input type="text" name="email" class="form-control" placeholder="Email" required>
+            <label>Username:</label>
+            <input type="text" name="username" class="form-control" placeholder="Username" required>
+            <label>Password:</label>
+            <input type="password" name="password" class="form-control" placeholder="Password" required>
+            <br>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+

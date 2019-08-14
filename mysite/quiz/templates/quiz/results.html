@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Results</title>
+{% endblock %}
+
+{% block nav %}
+        <li class="nav-item">
+          <a class="nav-link" href="/quiz/home/">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/quiz/highscores/">High Scores</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/quiz/create/">Create Tournament</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/quiz/logout/">Logout</a>
+        </li>
+{% endblock %}
+
+{% block jumbo %}
+    <h1 class="display-3">Well done! {{ user.get_full_name }}!</h1>
+    <hr>
+    <p class="lead">You have completed this tournament! Check the <a class="nav-link in-text" href="/quiz/highscores/">high scores</a> to see if your score has been posted.</p>
+{% endblock %}
+
+{% block body %}
+
+<div class="container body">
+    {% if score > 5 %}
+        <h1 class="results">Congratulations! <br> You scored...<br>{{score}} out of 10.</h1>
+    {% else %}
+        <h1 class="results">Uh oh!!<br>You only scored...<br>{{score}} out of 10.</h1>
+    {% endif %}
+</div>
+
+{% endblock %}

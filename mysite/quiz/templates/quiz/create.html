@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Create Tournament</title>
+{% endblock %}
+
+{% block nav %}
+        <li class="nav-item">
+          <a class="nav-link" href="/quiz/home/">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/quiz/highscores/">High Scores</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/quiz/create/">Create Tournament</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/quiz/logout/">Logout</a>
+        </li>
+{% endblock %}
+
+{% block jumbo %}
+    <h1 class="display-3">Create a tournament!</h1>
+    <hr>
+    <p class="lead">Use the form below to create a brand new tournament for users to enter.</p>
+{% endblock %}
+
+{% block body %}
+
+<div class="container body">
+    <div class="container create-form">
+
+        <form method="post" action="{% url 'quiz:create' %}">
+            {% csrf_token %}
+            <label>Tournament Name:</label>
+            <input type="text" name="name" class="form-control" placeholder="Name" required>
+            <label>Start Date:</label>
+            <input type="date" name="start_date" class="form-control" required>
+            <label>End Date:</label>
+            <input type="date" name="end_date" class="form-control" required>
+            <label>Category:</label>
+            <select name="category" class="form-control">
+                <option value="Any">Any</option>
+                {% for key, category in categories.items %}
+                    <option value={{ key }}>{{ category }}</option>
+                {% endfor %}
+            </select>
+            <label>Difficulty Level:</label>
+            <select name="difficulty" class="form-control">
+                <option value="Any">Any</option>
+                <option value="Easy">Easy</option>
+                <option value="Medium">Medium</option>
+                <option value="Hard">Hard</option>
+            </select>
+            <br>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

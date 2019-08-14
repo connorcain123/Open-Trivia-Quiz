@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Questions</title>
+{% endblock %}
+
+{% block nav %}
+        <li class="nav-item">
+          <a class="nav-link" href="/quiz/home/">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/quiz/highscores/">High Scores</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/quiz/create_get/">Create Tournament</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/quiz/login/">Logout</a>
+        </li>
+{% endblock %}
+
+{% block jumbo %}
+    <h1 class="display-3">Questions!</h1>
+    <hr>
+{% endblock %}
+
+{% block body %}
+
+<div class="container body">
+
+    {% for q in questions %}
+        <h1>Question {{q.id}}:</h1>
+        <p>{{ q.question_text }}</p>
+        <h1>Anwsers:</h1>
+        <p>{{ q.correct_answer }}</p>
+        {% for a in answers %}
+            {% if a.question.id == q.id %}
+            <p>{{ a.incorrect_answer }}</p>
+            {%  endif %}
+        {% endfor %}
+    {% endfor %}
+
+</div>
+
+{% endblock %}
